@@ -1,5 +1,7 @@
 # Docker Build Image For Tania
 
+[![Build Status](https://travis-ci.org/Tanibox/docker-php7.svg?branch=master)](https://travis-ci.org/Tanibox/docker-php7)
+
 This docker image is built from [official alpine php-fpm image](https://registry.hub.docker.com/_/php/). We add these
 features:
 

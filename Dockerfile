@@ -12,14 +12,14 @@ RUN   export BUILD_ESSENTIAL="build-base zlib-dev autoconf automake pcre-dev pkg
       && apk update \
       && apk add --no-cache $BUILD_ESSENTIAL $ESSENTIAL \
       && curl -sS -o /tmp/libzip.tar.gz -L https://nih.at/libzip/libzip-1.2.0.tar.gz \
-      && tar -xzvf /tmp/libzip.tar.gz -C /tmp \
+      && tar -xzf /tmp/libzip.tar.gz -C /tmp \
       && cd /tmp/libzip-1.2.0 \
       && ./configure --prefix=/usr/local \
-      && make -j 4 && make install \
+      && make -j 4 --silent && make install \
       && curl -sS -o /tmp/icu.tar.gz -L http://download.icu-project.org/files/icu4c/57.1/icu4c-57_1-src.tgz \
       && tar -zxf /tmp/icu.tar.gz -C /tmp && cd /tmp/icu/source \
       && ./configure --prefix=/usr/local \
-      && make -j 4 && make install \
+      && make -j 4 --silent && make install \
       && docker-php-ext-install intl pdo pdo_mysql \
       && docker-php-ext-enable opcache \
       && docker-php-pecl-install redis zip memcached \
