@@ -1,24 +1,28 @@
 sudo: required
 dist: trusty
+language: c
+
 services:
-- docker
+  - docker
+
 addons:
   apt:
     sources:
     - sourceline: deb https://download.docker.com/linux/ubuntu trusty stable
       key_url: https://download.docker.com/linux/ubuntu/gpg
     packages:
-    - apt-transport-https
-    - ca-certificates
-    - curl
-    - software-properties-common
-    - docker-ce
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - docker-ce
+
 before_install:
   - if [ $TRAVIS_PULL_REQUEST == "false" ]; then docker login -u $DOCKER_USER -p $DOCKER_PASSWORD; fi
 script:
   - docker build -t tanibox/php7-fpm .
 after_success:
-  - [ $TRAVIS_PULL_REQUEST == "false" ] && docker push tanibox/php7-fpm || true
+  - if [ $TRAVIS_PULL_REQUEST == "false" ]; then docker push tanibox/php7-fpm; fi 
 env:
   global:
   - secure: g0ywdrBBhCtpMPTjSf/D5DhuiXaMUYGWKfmReQ5OK6RIWBpIPmJpyhbl5ZAvVPMzx354MuqeWGYpGr39KGlEQ5Jes5ijOBjPvpqs1P48uDIVbMyfYCaIphGdVn4e65HpX2Y8LxwmoLwdRrx9pMDVqd+snSOuWg7AELHpjrDwRMEPbLlaF1kpFjJfdC2dh49H0j8psfn1TLtpL+QqYE+5OFhiwgZZZDKG8wOXx3hl0GPP7cpmRKBGkl124+Jndz7LraUt4MUNNin+QHOuwBvOAKtn4bvDEGTrTjLYtrnWAsldErUBMiLK0g6DOoSUUxtfIYeVyNVQSQYz3Fc3debyUX1FoAU/sG2yaXI81aiL0xsIRPTmtnpw2PAm2luC6/gqt8zKiI63nRdWawwZTeo6P45hJaSEvWKY3wiy6rndZcHZvFKIvSyiBX+guXhbscv4Ufa1QDuKYU60IPPvfCr9jxIXo19boNydF9ztsvO2moRPZzZE9Y+LJEavJBJ6GrYpsP9L69rMK2l5ySYyRi1WzyyfRldH9eUkUPfitwlAJc3j9/TKECorpMbQ1GZJ+r+xsyYCMw6fi5MzKbHlrG4DHTVBYn6PX6iMvKItnC1HYagG/UMVMQ0nX2vc8OQNjRNvqIH6SjGZKfpiMH83xxF4eS/R6qZ/p/hZO50bC1zdbiQ=
