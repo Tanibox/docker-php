@@ -12,4 +12,5 @@ fi
 
 cat <> /tmp/stdout 1>&2 &
 
-exec "$@"
+# Needed for Alpine
+exec env LD_PRELOAD=/usr/lib/preloadable_libiconv.so "$@"
