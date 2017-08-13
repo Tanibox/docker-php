@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -e
+
+if [ ! -d /tmp ]; then
+    mkdir -p /tmp
+fi
+
+if [ ! -e /tmp/stdout ]; then
+    mkfifo -m 666 /tmp/stdout
+fi
+
+cat <> /tmp/stdout 1>&2 &
+
+exec "$@"
