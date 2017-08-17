@@ -4,7 +4,6 @@ MAINTAINER Didiet Noor <dnoor@tanibox.com>
 
 COPY ./php-fpm/bin/* /usr/local/bin/
 COPY ./php-fpm/conf/php.ini /usr/local/etc/php/conf.d/
-COPY ./php-fpm/conf/pool.conf /usr/local/etc/php-fpm.d/pool.conf
 
 ENV PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/local/lib/pkgconfig
 RUN   export BUILD_ESSENTIAL="build-base zlib-dev autoconf automake pcre-dev pkgconfig file libmemcached-dev re2c cyrus-sasl-dev gettext-dev zlib-dev libpng-dev libjpeg-turbo-dev libmcrypt-dev" \
