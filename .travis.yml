@@ -20,7 +20,8 @@ addons:
 before_install:
   - if [ $TRAVIS_PULL_REQUEST == "false" ]; then docker login -u $DOCKER_USER -p $DOCKER_PASSWORD; fi
 script:
-  - docker build -t tanibox/php7-fpm .
+  - docker build -t tanibox/php7-fpm -f php-fpm/Dockerfile .
+  - docker build -t tanibox/php7-fpm-nginx-supervisord -f php-fpm-nginx-supervisord/Dockerfile .
 after_success:
   - if [ $TRAVIS_PULL_REQUEST == "false" ]; then docker push tanibox/php7-fpm; fi 
 env:
