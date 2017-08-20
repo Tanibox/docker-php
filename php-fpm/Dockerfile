@@ -21,7 +21,7 @@ RUN   export BUILD_ESSENTIAL="build-base zlib-dev autoconf automake pcre-dev pkg
       && make -j 4 --silent && make install \
       && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr/include \
       && docker-php-ext-configure intl --enable-intl \
-      && docker-php-ext-install intl pdo pdo_mysql mbstring iconv gettext mcrypt \
+      && docker-php-ext-install intl pdo pdo_mysql pdo_pgsql mbstring iconv gettext mcrypt \
       && docker-php-ext-enable opcache \
       && docker-php-pecl-install redis zip memcached timezonedb \
       && apk del $BUILD_ESSENTIAL \
