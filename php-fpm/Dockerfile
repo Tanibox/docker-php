@@ -7,7 +7,7 @@ COPY ./php-fpm/conf/php.ini /usr/local/etc/php/conf.d/
 
 ENV PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/local/lib/pkgconfig
 RUN   export BUILD_ESSENTIAL="build-base zlib-dev autoconf automake postgresql-dev pcre-dev pkgconfig file libmemcached-dev re2c cyrus-sasl-dev gettext-dev zlib-dev libpng-dev libjpeg-turbo-dev libmcrypt-dev" \
-      export ESSENTIAL="libmemcached-libs libpcre16 libpcre32 libpcrecpp libsasl libmagic gettext libmcrypt libjpeg-turbo libpng" \
+      export ESSENTIAL="libmemcached-libs libpq libpcre16 libpcre32 libpcrecpp libsasl libmagic gettext libmcrypt libjpeg-turbo libpng" \
       && apk update \
       && apk add --no-cache $BUILD_ESSENTIAL $ESSENTIAL \
       && curl -sS -o /tmp/libzip.tar.gz -L https://nih.at/libzip/libzip-1.2.0.tar.gz \
